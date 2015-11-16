@@ -49,8 +49,33 @@ set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
 set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
-set_global_assignment -name VHDL_FILE g05_prime_counter.vhd
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name VHDL_FILE g05_7_segment_decoder.vhd
+set_global_assignment -name BSF_FILE g05_7_segment_decoder.bsf
+set_global_assignment -name VHDL_FILE g05_prime_counter.vhd
+set_global_assignment -name BDF_FILE g05_lab4.bdf
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_location_assignment PIN_AF14 -to clk
+set_location_assignment PIN_AA14 -to reset
+set_location_assignment PIN_AB12 -to mode[0]
+set_location_assignment PIN_AC12 -to mode[1]
+set_location_assignment PIN_AE12 -to ripple_in
+set_location_assignment PIN_AE26 -to segment_1[6]
+set_location_assignment PIN_AE27 -to segment_1[5]
+set_location_assignment PIN_AE28 -to segment_1[4]
+set_location_assignment PIN_AG27 -to segment_1[3]
+set_location_assignment PIN_AF28 -to segment_1[2]
+set_location_assignment PIN_AG28 -to segment_1[1]
+set_location_assignment PIN_AH28 -to segment_1[0]
+set_location_assignment PIN_AJ29 -to segment_2[6]
+set_location_assignment PIN_AH29 -to segment_2[5]
+set_location_assignment PIN_AH30 -to segment_2[4]
+set_location_assignment PIN_AG30 -to segment_2[3]
+set_location_assignment PIN_AF29 -to segment_2[2]
+set_location_assignment PIN_AF30 -to segment_2[1]
+set_location_assignment PIN_AD27 -to segment_2[0]
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
