@@ -23,7 +23,7 @@ end g05_prime_counter;
 
 architecture behavior of g05_prime_counter is
 
-	type primes is(p0, p2, p3, p5, p7, p11, p13, p17, p19, p23,
+	type primes is(p2, p3, p5, p7, p11, p13, p17, p19, p23,
 			   p29, p31, p37, p41, p43, p47, p53, p59, p61,
 			   p67, p71, p73, p79, p83, p89, p97);
 signal p_present, p_next : primes;
@@ -32,14 +32,6 @@ begin
 	begin
 		if enable = '1' then
 			case p_present is
-				when p0 =>
-					if mode = "00" then
-						p_next <= p2;
-					elsif mode = "01" then
-						p_next <= p2;
-					else
-						p_next <= p3;
-					end if;
 				when p2 =>
 					if mode = "00" then
 						p_next <= p3;
@@ -62,13 +54,13 @@ begin
 					elsif mode = "01" then
 						p_next <= p11;
 					else
-						p_next <= p3;
+						p_next <= p7;
 					end if;
 				when p7 =>
 					if mode = "00" then
 						p_next <= p11;
 					elsif mode = "01" then
-						p_next <= p3;
+						p_next <= p11;
 					else
 						p_next <= p31;
 					end if;
@@ -78,31 +70,31 @@ begin
 					elsif mode = "01" then
 						p_next <= p23;
 					else
-						p_next <= p3;
+						p_next <= p31;
 					end if;
 				when p13 =>
 					if mode = "00" then
 						p_next <= p17;
 					elsif mode = "01" then
-						p_next <= p3;
+						p_next <= p23;
 					else
-						p_next <= p3;
+						p_next <= p31;
 					end if;
 				when p17 =>
 					if mode = "00" then
 						p_next <= p19;
 					elsif mode = "01" then
-						p_next <= p3;
+						p_next <= p23;
 					else
-						p_next <= p3;
+						p_next <= p31;
 					end if;
 				when p19 =>
 					if mode = "00" then
 						p_next <= p23;
 					elsif mode = "01" then
-						p_next <= p3;
+						p_next <= p23;
 					else
-						p_next <= p3;
+						p_next <= p31;
 					end if;
 				when p23 =>
 					if mode = "00" then
@@ -110,7 +102,7 @@ begin
 					elsif mode = "01" then
 						p_next <= p29;
 					else
-						p_next <= p3;
+						p_next <= p31;
 					end if;
 				when p29 =>
 					if mode = "00" then
@@ -118,21 +110,21 @@ begin
 					elsif mode = "01" then
 						p_next <= p41;
 					else
-						p_next <= p3;
+						p_next <= p31;
 					end if;
 				when p31 =>
 					if mode = "00" then
 						p_next <= p37;
 					elsif mode = "01" then
-						p_next <= p3;
+						p_next <= p41;
 					else
-						p_next <= p0;
+						p_next <= p3;
 					end if;
 				when p37 =>
 					if mode = "00" then
 						p_next <= p41;
 					elsif mode = "01" then
-						p_next <= p3;
+						p_next <= p41;
 					else
 						p_next <= p3;
 					end if;
@@ -148,7 +140,7 @@ begin
 					if mode = "00" then
 						p_next <= p47;
 					elsif mode = "01" then
-						p_next <= p3;
+						p_next <= p53;
 					else
 						p_next <= p3;
 					end if;
@@ -156,7 +148,7 @@ begin
 					if mode = "00" then
 						p_next <= p53;
 					elsif mode = "01" then
-						p_next <= p3;
+						p_next <= p53;
 					else
 						p_next <= p3;
 					end if;
@@ -172,7 +164,7 @@ begin
 					if mode = "00" then
 						p_next <= p61;
 					elsif mode = "01" then
-						p_next <= p3;
+						p_next <= p83;
 					else
 						p_next <= p3;
 					end if;
@@ -180,7 +172,7 @@ begin
 					if mode = "00" then
 						p_next <= p67;
 					elsif mode = "01" then
-						p_next <= p3;
+						p_next <= p83;
 					else
 						p_next <= p3;
 					end if;
@@ -188,7 +180,7 @@ begin
 					if mode = "00" then
 						p_next <= p71;
 					elsif mode = "01" then
-						p_next <= p3;
+						p_next <= p83;
 					else
 						p_next <= p3;
 					end if;
@@ -196,7 +188,7 @@ begin
 					if mode = "00" then
 						p_next <= p73;
 					elsif mode = "01" then
-						p_next <= p3;
+						p_next <= p83;
 					else
 						p_next <= p3;
 					end if;
@@ -204,7 +196,7 @@ begin
 					if mode = "00" then
 						p_next <= p79;
 					elsif mode = "01" then
-						p_next <= p3;
+						p_next <= p83;
 					else
 						p_next <= p3;
 					end if;
@@ -212,7 +204,7 @@ begin
 					if mode = "00" then
 						p_next <= p83;
 					elsif mode = "01" then
-						p_next <= p3;
+						p_next <= p83;
 					else
 						p_next <= p3;
 					end if;
@@ -228,35 +220,36 @@ begin
 					if mode = "00" then
 						p_next <= p97;
 					elsif mode = "01" then
-						p_next <= p0;
+						p_next <= p2;
 					else
 						p_next <= p3;
 					end if;
 				when p97 =>
 					if mode = "00" then
-						p_next <= p0;
+						p_next <= p2;
 					elsif mode = "01" then
-						p_next <= p3;
+						p_next <= p2;
 					else
 						p_next <= p3;
 					end if;
 				when others =>
 					p_next <= p3;
 			end case;
+		else
+			p_next <= p_present;
 		end if;
 	end process;
 	
 	process(clk, reset)
 	begin
 		if reset = '0' then
-			p_present <= p0;
+			p_present <= p2;
 		elsif rising_edge(clk) then
 			p_present <= p_next;
 		end if;
 	end process;
 	
 	p_number_1 <= 
-			std_logic_vector(to_unsigned(0,4)) when p_present = p0 else
 			std_logic_vector(to_unsigned(2,4)) when p_present = p2 else
 		 	std_logic_vector(to_unsigned(3,4)) when p_present = p3 else
  			std_logic_vector(to_unsigned(5,4)) when p_present = p5 else
@@ -283,7 +276,6 @@ begin
 			std_logic_vector(to_unsigned(9,4)) when p_present = p89 else
 			std_logic_vector(to_unsigned(7,4)) when p_present = p97;
 	p_number_2 <= 
-			std_logic_vector(to_unsigned(0,4)) when p_present = p0 else
 			std_logic_vector(to_unsigned(0,4)) when p_present = p2 else
 		 	std_logic_vector(to_unsigned(0,4)) when p_present = p3 else
  			std_logic_vector(to_unsigned(0,4)) when p_present = p5 else
