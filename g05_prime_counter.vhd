@@ -16,7 +16,8 @@ entity g05_prime_counter is
 		enable : in std_logic;
 		reset : in std_logic;
 		clk : in std_logic;
-		p_number : out std_logic_vector(7 downto 0)
+		p_number_1 : out std_logic_vector(3 downto 0);
+		p_number_2 : out std_logic_vector(3 downto 0)
 	);
 end g05_prime_counter;
 
@@ -254,31 +255,58 @@ begin
 		end if;
 	end process;
 	
-	p_number <= 
-			std_logic_vector(to_unsigned(0,8)) when p_present = p0 else
-			std_logic_vector(to_unsigned(2,8)) when p_present = p2 else
-		 	std_logic_vector(to_unsigned(3,8)) when p_present = p3 else
- 			std_logic_vector(to_unsigned(5,8)) when p_present = p5 else
-			std_logic_vector(to_unsigned(7,8)) when p_present = p7 else
-			std_logic_vector(to_unsigned(11,8)) when p_present = p11 else
-			std_logic_vector(to_unsigned(13,8)) when p_present = p13 else
-			std_logic_vector(to_unsigned(17,8)) when p_present = p17 else
-			std_logic_vector(to_unsigned(19,8)) when p_present = p19 else
-			std_logic_vector(to_unsigned(23,8)) when p_present = p23 else
-			std_logic_vector(to_unsigned(29,8)) when p_present = p29 else
-			std_logic_vector(to_unsigned(31,8)) when p_present = p31 else
-			std_logic_vector(to_unsigned(37,8)) when p_present = p37 else
-			std_logic_vector(to_unsigned(41,8)) when p_present = p41 else
-			std_logic_vector(to_unsigned(43,8)) when p_present = p43 else
-			std_logic_vector(to_unsigned(47,8)) when p_present = p47 else
-			std_logic_vector(to_unsigned(53,8)) when p_present = p53 else
-			std_logic_vector(to_unsigned(59,8)) when p_present = p59 else
-			std_logic_vector(to_unsigned(61,8)) when p_present = p61 else
-			std_logic_vector(to_unsigned(67,8)) when p_present = p67 else
-			std_logic_vector(to_unsigned(71,8)) when p_present = p71 else
-			std_logic_vector(to_unsigned(73,8)) when p_present = p73 else
-			std_logic_vector(to_unsigned(79,8)) when p_present = p79 else
-			std_logic_vector(to_unsigned(83,8)) when p_present = p83 else
-			std_logic_vector(to_unsigned(89,8)) when p_present = p89 else
-			std_logic_vector(to_unsigned(97,8)) when p_present = p97;
+	p_number_1 <= 
+			std_logic_vector(to_unsigned(0,4)) when p_present = p0 else
+			std_logic_vector(to_unsigned(2,4)) when p_present = p2 else
+		 	std_logic_vector(to_unsigned(3,4)) when p_present = p3 else
+ 			std_logic_vector(to_unsigned(5,4)) when p_present = p5 else
+			std_logic_vector(to_unsigned(7,4)) when p_present = p7 else
+			std_logic_vector(to_unsigned(1,4)) when p_present = p11 else
+			std_logic_vector(to_unsigned(3,4)) when p_present = p13 else
+			std_logic_vector(to_unsigned(7,4)) when p_present = p17 else
+			std_logic_vector(to_unsigned(9,4)) when p_present = p19 else
+			std_logic_vector(to_unsigned(3,4)) when p_present = p23 else
+			std_logic_vector(to_unsigned(9,4)) when p_present = p29 else
+			std_logic_vector(to_unsigned(1,4)) when p_present = p31 else
+			std_logic_vector(to_unsigned(7,4)) when p_present = p37 else
+			std_logic_vector(to_unsigned(1,4)) when p_present = p41 else
+			std_logic_vector(to_unsigned(3,4)) when p_present = p43 else
+			std_logic_vector(to_unsigned(7,4)) when p_present = p47 else
+			std_logic_vector(to_unsigned(3,4)) when p_present = p53 else
+			std_logic_vector(to_unsigned(9,4)) when p_present = p59 else
+			std_logic_vector(to_unsigned(1,4)) when p_present = p61 else
+			std_logic_vector(to_unsigned(7,4)) when p_present = p67 else
+			std_logic_vector(to_unsigned(1,4)) when p_present = p71 else
+			std_logic_vector(to_unsigned(3,4)) when p_present = p73 else
+			std_logic_vector(to_unsigned(9,4)) when p_present = p79 else
+			std_logic_vector(to_unsigned(3,4)) when p_present = p83 else
+			std_logic_vector(to_unsigned(9,4)) when p_present = p89 else
+			std_logic_vector(to_unsigned(7,4)) when p_present = p97;
+	p_number_2 <= 
+			std_logic_vector(to_unsigned(0,4)) when p_present = p0 else
+			std_logic_vector(to_unsigned(0,4)) when p_present = p2 else
+		 	std_logic_vector(to_unsigned(0,4)) when p_present = p3 else
+ 			std_logic_vector(to_unsigned(0,4)) when p_present = p5 else
+			std_logic_vector(to_unsigned(0,4)) when p_present = p7 else
+			std_logic_vector(to_unsigned(1,4)) when p_present = p11 else
+			std_logic_vector(to_unsigned(1,4)) when p_present = p13 else
+			std_logic_vector(to_unsigned(1,4)) when p_present = p17 else
+			std_logic_vector(to_unsigned(1,4)) when p_present = p19 else
+			std_logic_vector(to_unsigned(2,4)) when p_present = p23 else
+			std_logic_vector(to_unsigned(2,4)) when p_present = p29 else
+			std_logic_vector(to_unsigned(3,4)) when p_present = p31 else
+			std_logic_vector(to_unsigned(3,4)) when p_present = p37 else
+			std_logic_vector(to_unsigned(4,4)) when p_present = p41 else
+			std_logic_vector(to_unsigned(4,4)) when p_present = p43 else
+			std_logic_vector(to_unsigned(4,4)) when p_present = p47 else
+			std_logic_vector(to_unsigned(5,4)) when p_present = p53 else
+			std_logic_vector(to_unsigned(5,4)) when p_present = p59 else
+			std_logic_vector(to_unsigned(6,4)) when p_present = p61 else
+			std_logic_vector(to_unsigned(6,4)) when p_present = p67 else
+			std_logic_vector(to_unsigned(7,4)) when p_present = p71 else
+			std_logic_vector(to_unsigned(7,4)) when p_present = p73 else
+			std_logic_vector(to_unsigned(7,4)) when p_present = p79 else
+			std_logic_vector(to_unsigned(8,4)) when p_present = p83 else
+			std_logic_vector(to_unsigned(8,4)) when p_present = p89 else
+			std_logic_vector(to_unsigned(9,4)) when p_present = p97;
 end behavior;
