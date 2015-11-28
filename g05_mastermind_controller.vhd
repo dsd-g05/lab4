@@ -1,6 +1,6 @@
 -- Descp. Controller of the Datapath/Controller architecture for solving Mastermind
 --
--- entity name: g05_controller
+-- entity name: g05_mastermind_controller
 --
 -- Version 1.0
 -- Author: Felix Dube; felix.dube@mail.mcgill.ca & Auguste Lalande; auguste.lalande@mail.mcgill.ca
@@ -9,7 +9,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity g05_controller is
+entity g05_mastermind_controller is
 	port (
         SC_CMP, TC_LAST : in std_logic;
         START, READY : in std_logic;
@@ -19,9 +19,9 @@ entity g05_controller is
         TM_IN, TM_EN, TC_EN, TC_RST : out std_logic; 
         SOLVED : out std_logic
 	);
-end g05_controller;
+end g05_mastermind_controller;
 
-architecture behavior of g05_controller is
+architecture behavior of g05_mastermind_controller is
     type state is (s1, s2, s3, s4, s5, s6, s7, s8, s9);
     signal s_present, s_next : state;
 begin
@@ -115,7 +115,7 @@ begin
                 SC_CMP when s_present = s6 or s_present = s7 else '0';
     TM_EN <= '1' when s_present = s3 or s_present = s6 or s_present = s7 else '0';
     TC_EN <= '1' when s_present = s3 or s_present = s6 or s_present = s7 else '0';
-    TC_RST <= '1' when s_present = s1 or s_present = s4 or s_present = s8 else '0';
+    TC_RST <= '1' when s_present = s1 or s_present = s4 or s_present = s8 or s_present = s9 else '0';
     SOLVED <= '1' when s_present = s9 else '0';
 
 end behavior;

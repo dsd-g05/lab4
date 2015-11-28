@@ -18,9 +18,9 @@
 -- suit user's needs .Comments are provided in each section to help the user  
 -- fill out necessary details.                                                
 -- ***************************************************************************
--- Generated on "11/28/2015 14:41:12"
+-- Generated on "11/28/2015 14:45:16"
                                                             
--- Vhdl Test Bench template for design  :  g05_controller
+-- Vhdl Test Bench template for design  :  g05_mastermind_controller
 -- 
 -- Simulation tool : ModelSim-Altera (VHDL)
 -- 
@@ -28,9 +28,9 @@
 LIBRARY ieee;                                               
 USE ieee.std_logic_1164.all;                                
 
-ENTITY g05_controller_vhd_tst IS
-END g05_controller_vhd_tst;
-ARCHITECTURE g05_controller_arch OF g05_controller_vhd_tst IS
+ENTITY g05_mastermind_controller_vhd_tst IS
+END g05_mastermind_controller_vhd_tst;
+ARCHITECTURE g05_mastermind_controller_arch OF g05_mastermind_controller_vhd_tst IS
 -- constants                                                 
 -- signals                                                   
 SIGNAL CLK : STD_LOGIC;
@@ -48,27 +48,27 @@ SIGNAL TC_LAST : STD_LOGIC;
 SIGNAL TC_RST : STD_LOGIC;
 SIGNAL TM_EN : STD_LOGIC;
 SIGNAL TM_IN : STD_LOGIC;
-COMPONENT g05_controller
+COMPONENT g05_mastermind_controller
 	PORT (
 	CLK : IN STD_LOGIC;
-	GR_LD : BUFFER STD_LOGIC;
-	GR_SEL : BUFFER STD_LOGIC;
-	P_SEL : BUFFER STD_LOGIC;
+	GR_LD : OUT STD_LOGIC;
+	GR_SEL : OUT STD_LOGIC;
+	P_SEL : OUT STD_LOGIC;
 	READY : IN STD_LOGIC;
 	SC_CMP : IN STD_LOGIC;
-	SOLVED : BUFFER STD_LOGIC;
-	SR_LD : BUFFER STD_LOGIC;
-	SR_SEL : BUFFER STD_LOGIC;
+	SOLVED : OUT STD_LOGIC;
+	SR_LD : OUT STD_LOGIC;
+	SR_SEL : OUT STD_LOGIC;
 	START : IN STD_LOGIC;
-	TC_EN : BUFFER STD_LOGIC;
+	TC_EN : OUT STD_LOGIC;
 	TC_LAST : IN STD_LOGIC;
-	TC_RST : BUFFER STD_LOGIC;
-	TM_EN : BUFFER STD_LOGIC;
-	TM_IN : BUFFER STD_LOGIC
+	TC_RST : OUT STD_LOGIC;
+	TM_EN : OUT STD_LOGIC;
+	TM_IN : OUT STD_LOGIC
 	);
 END COMPONENT;
 BEGIN
-	i1 : g05_controller
+	i1 : g05_mastermind_controller
 	PORT MAP (
 -- list connections between master ports and signals
 	CLK => CLK,
@@ -87,18 +87,84 @@ BEGIN
 	TM_EN => TM_EN,
 	TM_IN => TM_IN
 	);
-init : PROCESS                                               
--- variable declarations                                     
-BEGIN                                                        
-        -- code that executes only once                      
-WAIT;                                                       
-END PROCESS init;                                           
+                                     
 always : PROCESS                                              
--- optional sensitivity list                                  
--- (        )                                                 
--- variable declarations                                      
+                                            
+                                   
 BEGIN                                                         
-        -- code executes for every event on sensitivity list  
+    --setup
+    SC_CMP <= '0';
+    TC_LAST <= '0';
+    START <= '1';
+    READY <= '0';
+    CLK <= '0';
+    wait for 10 ns;
+    
+    --s1
+    START <= '0';
+    wait for 10 ns;
+    CLK <= '1';
+    wait for 10 ns;
+    CLK <= '0';
+    
+    --s2
+    START <= '1';
+    wait for 10 ns;
+    CLK <= '1';
+    wait for 10 ns;
+    CLK <= '0';
+    
+    --s3
+    TC_LAST <= '1';
+    wait for 10 ns;
+    CLK <= '1';
+    wait for 10 ns;
+    CLK <= '0';
+    
+    --s4
+    READY <= '1';
+    wait for 10 ns;
+    CLK <= '1';
+    wait for 10 ns;
+    CLK <= '0';
+    
+    --s5
+    READY <= '0';
+    SC_CMP <= '0';
+    wait for 10 ns;
+    CLK <= '1';
+    wait for 10 ns;
+    CLK <= '0';
+    
+    --s6
+    SC_CMP <= '1';
+    wait for 10 ns;
+    CLK <= '1';
+    wait for 10 ns;
+    CLK <= '0';
+    
+    --s7
+    SC_CMP <= '0';
+    TC_LAST <= '1';
+    wait for 10 ns;
+    CLK <= '1';
+    wait for 10 ns;
+    CLK <= '0';
+    
+    --s8
+    READY <= '1';
+    wait for 10 ns;
+    CLK <= '1';
+    wait for 10 ns;
+    CLK <= '0';
+    
+    --s5
+    SC_CMP <= '1';
+    wait for 10 ns;
+    CLK <= '1';
+    wait for 10 ns;
+    CLK <= '0';
+    
 WAIT;                                                        
 END PROCESS always;                                          
-END g05_controller_arch;
+END g05_mastermind_controller_arch;
